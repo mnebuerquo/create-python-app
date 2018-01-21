@@ -2,7 +2,7 @@
 Like create-react-app, but for python, and dockerized!
 
 # Installing
-Run the following commands inside your project directory to add this to your 
+Run the following commands inside your project directory to add this to your
 Python app:
 
 ```sh
@@ -38,9 +38,9 @@ Or use the local pip to install and freeze requirements:
 ```
 
 ## Test
-Create-python-app installs a default requirements.txt containing 
-[pytest](https://docs.pytest.org/en/latest/), running 
-[doctest](https://docs.python.org/3/library/doctest.html) with 
+Create-python-app installs a default requirements.txt containing
+[pytest](https://docs.pytest.org/en/latest/), running
+[doctest](https://docs.python.org/3/library/doctest.html) with
 [pytest-watch](https://github.com/joeyespo/pytest-watch) for
 running automated tests while coding. Feel free to replace this with a test
 runner of your own.
@@ -67,7 +67,7 @@ runner in this file.
 
 This is where you put secrets, keys, and passwords, so
 do not commit it to git. For deploying to servers, your CI system probably
-has a way of setting environment variables when provisioning. 
+has a way of setting environment variables when provisioning.
 
 # Deploying to a Server
 
@@ -75,14 +75,29 @@ Coming soon.
 
 # Dependencies
 
-* Docker is required for running the containerized python.
-* wget is required for the installer to download files.
+* [Docker](https://www.docker.com/community-edition) is required for running the
+  containerized python. Community edition is fine, you don't need enterprise
+  support for this.
+* [wget](https://stackoverflow.com/a/9491666/5114) is required for the installer
+  to download files. This may not be installed on all systems by default,
+  but it's easy to find instructions with a google search.
 
 # TODO
 
 * Environment variable to choose between python3 (default) and python2.7 in
   the install
 * Separate environment files for test and development
+* Combine lint and test into one command as command line arguments (maybe)
+
+There are a few things I'm not real happy about. First, because the
+Dockerfile must be at the root of the filesystem copied to the container,
+this must be in the root level of the project. Second, I have several
+scripts here so it's even more clutter in the project root directory.
+
+I think there should be a way to move this stuff to its own directory inside
+the project, but I'm not sure how yet. Maybe by just making the project
+directory a volume I won't need the dockerfile. But then I might have to
+build and run pip install more often.
 
 # Inspiration
 
