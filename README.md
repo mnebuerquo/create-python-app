@@ -2,7 +2,6 @@
 Like create-react-app, but for python, and dockerized!
 
 # Installing
-
 Run the following commands inside your project directory to add this to your 
 Python app:
 
@@ -19,7 +18,6 @@ container instead of a virtualenv. It can also be used to build a container
 for deploy.
 
 # Usage
-
 Once you have run the install script, you can run the dockerized version of
 Python and Pip from the local directory instead of the system instance.
 
@@ -46,6 +44,15 @@ runner of your own.
 
 ```sh
 ./mn_test
+```
+
+ ## Lint
+Everyone needs to run a linter. This is a great way to improve your code.
+I'm using [flake8](http://flake8.pycqa.org/en/latest/index.html) which
+combines the powers of a few static code checkers.
+
+```sh
+./mn_lint
 ```
 
 ## Environment Variables
@@ -76,9 +83,13 @@ Coming soon.
 
 # Inspiration
 
-* create-react-app
-* whalebrew
+* [create-react-app](https://github.com/facebookincubator/create-react-app)
+	: a scaffolding for creating a React app without having to figure out
+	all the boilerplate
+* [whalebrew](https://github.com/bfirsh/whalebrew)
+	: Like homebrew, but using docker images to keep everything isolated.
 * Team Echo
+	: The team I worked with at Kroger Digital. They're all rockstars.
 
 # Issues and Pull Requests Welcome!
 

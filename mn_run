@@ -8,7 +8,7 @@
 # This script runs a command in your container. You don't need to invoke
 # this script directly, just run ./python <filename>.py or ./pip ...
 
-IMAGE="mancalai"
+. ./mn_image
 
 # build the image if it does not yet exist
 # if it does already exist, run ./mn_build to replace it
@@ -21,4 +21,4 @@ if [ ! -f .env ]; then
 	touch .env
 fi
 
-docker run -it --rm --name mancalai --env-file .env -v "$PWD":/usr/src/app "$IMAGE" "$@"
+docker run -it --rm --name "$CONTAINTER" --env-file .env -v "$PWD":/usr/src/app "$IMAGE" "$@"

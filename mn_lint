@@ -10,4 +10,6 @@
 
 . ./mn_image "$(basename $0)"
 
-./mn_run ptw "$@"
+echo $CONTAINTER
+
+./mn_run flake8 ./
