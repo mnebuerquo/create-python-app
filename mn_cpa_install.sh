@@ -35,3 +35,5 @@ get_executable python
 
 get_file mn_Dockerfile
 get_file pytest.ini
+
+./mn_build

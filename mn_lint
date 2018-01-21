@@ -10,6 +10,4 @@
 
 . ./mn_image "$(basename $0)"
 
-echo $CONTAINTER
-
-./mn_run flake8 ./
+./mn_run flake8 --exclude .git,__pycache__, env*
