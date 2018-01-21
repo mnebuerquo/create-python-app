@@ -10,4 +10,4 @@
 
 . ./mn_image "$(basename $0)"
 
-./mn_run flake8 --exclude .git,__pycache__, env*
+./mn_run flake8 --append-config=flake8.ini
