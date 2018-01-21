@@ -38,7 +38,10 @@ Or use the local pip to install and freeze requirements:
 ```
 
 ## Test
-Create-python-app installs a default requirements.txt containing pytest for
+Create-python-app installs a default requirements.txt containing 
+[pytest](https://docs.pytest.org/en/latest/), running 
+[doctest](https://docs.python.org/3/library/doctest.html) with 
+[pytest-watch](https://github.com/joeyespo/pytest-watch) for
 running automated tests while coding. Feel free to replace this with a test
 runner of your own.
 
