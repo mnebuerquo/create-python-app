@@ -35,5 +35,6 @@ get_executable python
 
 get_file mn_Dockerfile
 get_file pytest.ini
+get_file flake8.ini
 
 ./mn_build
