@@ -80,6 +80,10 @@ Coming soon.
 
 # TODO
 
+* [Safety ](https://github.com/pyupio/safety)
+* Debugger Support
+    - [pudb](https://pypi.python.org/pypi/pudb)
+    - [pdb](https://docs.python.org/3.6/library/pdb.html)
 * Environment variable to choose between python3 (default) and python2.7 in
   the install
 * Separate environment files for test and development
@@ -87,12 +91,12 @@ Coming soon.
 # Inspiration
 
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
-	: a scaffolding for creating a React app without having to figure out
-	all the boilerplate
+    : a scaffolding for creating a React app without having to figure out
+    all the boilerplate
 * [whalebrew](https://github.com/bfirsh/whalebrew)
-	: Like homebrew, but using docker images to keep everything isolated.
+    : Like homebrew, but using docker images to keep everything isolated.
 * Team Echo
-	: The team I worked with at Kroger Digital. They're all rockstars.
+    : The team I worked with at Kroger Digital. They're all rockstars.
 
 # Issues and Pull Requests Welcome!
 
