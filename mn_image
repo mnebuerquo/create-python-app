@@ -7,8 +7,8 @@ if [ -z "$IMAGE" ]; then
 fi
 
 SUFFIX=${1:-"app"}
-if [ -z "$CONTAINTER" ]; then
-    CONTAINTER="$(basename $PWD)_$SUFFIX"
+if [ -z "$CONTAINER" ]; then
+    CONTAINER="$(basename $PWD)_$SUFFIX"
 fi
 
 set +a

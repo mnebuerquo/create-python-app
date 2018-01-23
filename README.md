@@ -88,6 +88,7 @@ Coming soon.
 * Debugger Support
     - [pudb](https://pypi.python.org/pypi/pudb)
     - [pdb](https://docs.python.org/3.6/library/pdb.html)
+    - [web-pdb](https://pypi.python.org/pypi/web-pdb)
 * Environment variable to choose between python3 (default) and python2.7 in
   the install
 * Separate environment files for test and development
