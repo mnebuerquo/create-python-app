@@ -22,7 +22,6 @@ if [ ! -f .env ]; then
 fi
 
 docker run \
-	--hostname="$(hostname)" \
 	-it \
 	--rm \
 	--name "$CONTAINER" \

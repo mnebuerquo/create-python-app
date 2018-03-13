@@ -29,13 +29,17 @@ Run the local python, giving the name of the script as an argument:
 ```
 
 ## Pip
-Or use the local pip to install and freeze requirements:
+Edit `requirements.txt` and then `./mn_build` to install new requirements.
+
+Then use pip to freeze requirements:
 
 ```sh
-./pip install scipy numpy pandas
 ./pip freeze > requirements.txt
-./pip install -r requirements.txt
 ```
+
+When you next call `./mn_build`, it installs all your new requirements from
+`requirements.txt`. The versions of every dependency are saved there too for
+building identical containers in the future.
 
 *Warning:* This installs stuff into the container, which is removed after it
 runs. So to add a new requirement you can not just run `pip install`!
@@ -115,6 +119,10 @@ somepackage`, but you have to add it to `requirements.txt` and then do a
 `./mn_build` to rebuild the container with the new requirement. You can then do
 a `pip freeze > requirements.txt` to capture the installed packages, but
 managing the packages is harder with them inside the container.
+
+I could put the pip install directory in a volume, so that it persists
+between containers. That would complicate rebuilds, deploying to prod, and
+removing dependencies.
 
 # Inspiration
 
