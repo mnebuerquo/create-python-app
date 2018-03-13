@@ -12,7 +12,7 @@
 
 # build the image if it does not yet exist
 # if it does already exist, run ./mn_build to replace it
-if [ "$(docker images -q $IMAGE 2> /dev/null)" == "" ]; then
+if [ "$(docker images -q $IMAGE 2> /dev/null)" = "" ]; then
     ./mn_build
 fi
 
