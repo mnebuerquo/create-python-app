@@ -37,6 +37,9 @@ Or use the local pip to install and freeze requirements:
 ./pip install -r requirements.txt
 ```
 
+*Warning:* This installs stuff into the container, which is removed after it
+runs. So to add a new requirement you can not just run `pip install`!
+
 ## Test
 Create-python-app installs a default requirements.txt containing
 [pytest](https://docs.pytest.org/en/latest/), running
@@ -47,6 +50,7 @@ runner of your own.
 
 ```sh
 ./mn_test
+./mn_test --watch
 ```
 
  ## Lint
@@ -93,6 +97,7 @@ Coming soon.
   the install
 * Separate environment files for test and development
 * Combine lint and test into one command as command line arguments (maybe)
+* Deploy to production guide
 
 There are a few things I'm not real happy about. First, because the
 Dockerfile must be at the root of the filesystem copied to the container,
@@ -104,6 +109,13 @@ the project, but I'm not sure how yet. Maybe by just making the project
 directory a volume I won't need the dockerfile. But then I might have to
 build and run pip install more often.
 
+Also, `pip install` is done in the build step. The installed packages are not
+in a volume, but in the container. This means you can't just `pip install
+somepackage`, but you have to add it to `requirements.txt` and then do a
+`./mn_build` to rebuild the container with the new requirement. You can then do
+a `pip freeze > requirements.txt` to capture the installed packages, but
+managing the packages is harder with them inside the container.
+
 # Inspiration
 
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
@@ -112,7 +124,7 @@ build and run pip install more often.
 * [whalebrew](https://github.com/bfirsh/whalebrew)
     : Like homebrew, but using docker images to keep everything isolated.
 * Team Echo
-    : The team I worked with at Kroger Digital. They're all rockstars.
+    : The team I worked with at Kroger Digital. They use Docker for everything.
 
 # Issues and Pull Requests Welcome!
 
