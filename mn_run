@@ -21,4 +21,11 @@ if [ ! -f .env ]; then
 	touch .env
 fi
 
-docker run -it --rm --name "$CONTAINER" --env-file .env -v "$PWD":/usr/src/app "$IMAGE" "$@"
+docker run \
+	--hostname="$(hostname)" \
+	-it \
+	--rm \
+	--name "$CONTAINER" \
+	--env-file .env \
+	-v "$PWD":/usr/src/app \
+	"$IMAGE" "$@"

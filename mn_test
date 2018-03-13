@@ -10,4 +10,9 @@
 
 . ./mn_image "$(basename $0)"
 
-./mn_run ptw "$@"
+if [ "$1" = "--watch" ]; then
+    shift
+    ./mn_run ptw "$@"
+else
+    ./mn_run pytest "$@"
+fi
