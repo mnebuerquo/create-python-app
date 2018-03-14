@@ -37,4 +37,8 @@ get_file mn_Dockerfile
 get_file pytest.ini
 get_file flake8.ini
 
+if [ ! -f .gitignore ]; then
+	wget -O ".gitignore" "https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore"
+fi
+
 ./mn_build
