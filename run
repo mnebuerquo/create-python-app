@@ -1,0 +1,46 @@
+#!/bin/sh
+
+IMAGE="python:3"
+
+SUFFIX="app"
+if [ -z "$CONTAINER" ]; then
+	#TODO: replace _ with - in container name
+    CONTAINER="$(basename $PWD)-$SUFFIX"
+fi
+
+COMMIT="${CONTAINER}-image"
+
+mython() {
+	# run with whatever we've already committed, else use base image
+	RUNIMG=$COMMIT
+	if [ "$(docker images -q $RUNIMG 2> /dev/null)" = "" ]; then
+		RUNIMG=$IMAGE
+	fi
+	# remove existing container
+	docker container inspect "$CONTAINER" >> /dev/null 2>&1 && docker rm $CONTAINER
+	# start new container
+	docker run -it \
+		--name "$CONTAINER" \
+		--env-file .env \
+		-v "$PWD":"/usr/src/app" \
+		-w "/usr/src/app" \
+		"$IMAGE" "$@"
+	# commit changes to container so we have a new image
+	set -e
+	docker commit "$CONTAINER" "$COMMIT" >> /dev/null 2>&1
+	set +e
+	# remove existing container
+	docker container inspect "$CONTAINER" >> /dev/null 2>&1 && docker rm $CONTAINER
+}
+		#--rm \
+
+set -e
+
+mython pip install -r requirements.txt
+mython pip freeze > requirements.txt
+mython flake8 --append-config=flake8.ini
+mython pytest
+
+docker images
+
+mython python "$@"
