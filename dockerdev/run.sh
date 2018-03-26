@@ -13,7 +13,7 @@ target=""
 project="${PWD}"
 while :; do
     case $1 in
-        -b|--build|build) op="build --no-cache"
+        -b|--build|build) op="build"
         ;;
         -r|--run|run) op="run"
         ;;
@@ -52,16 +52,3 @@ docker-compose \
     ${op} \
     ${target} \
     "$@"
-
-
-
-#cmd="docker-compose \
-    #--file ${compose} \
-    #--project-directory ${dockerdev} \
-    #--project-name ${name} \
-    #${op} \
-    #${target} \
-    #$@ \
-    #"
-#echo "${cmd}"
-#${cmd}

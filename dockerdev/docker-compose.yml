@@ -3,9 +3,18 @@
 # https://github.com/mnebuerquo/create-python-app
 # Please keep the above link in place if you are using this in your project!
 
-# Use this script to download all the necessary scripts to your project.
-# Run it any time to upgrade to the newest version of this tool.
-# Happy Pythoning!
+# Usage: 
+# docker-compose build
+# docker-compose run lint
+# docker-compose run pytest
+# docker-compose run watch
+# docker-compose run dev
+# docker-compose run prod
+
+# Environment:
+# This will not work without certain environment variables set!
+# PROJECT: this is the path to the project you want to run or test
+# PWD: this is the path where the docker-compose.yml lives
 
 version: '3'
 services:
@@ -23,28 +32,18 @@ services:
 
   watch:
     build:
-      context: "${PROJECT}"
-      dockerfile: "${PWD}/dockerdev/watch/Dockerfile"
+      context: ./watch
     volumes:
         - "${PROJECT}:/usr/src/app"
-
-  #test:
-    #build:
-      #context: ./test
-      #args:
-          #PROJECT: "${PROJECT}"
-    #volumes:
-        #- "${PROJECT}:/usr/src/app"
 
   dev:
     build:
       context: "${PROJECT}"
-      dockerfile: "${PWD}/dev/Dockerfile"
+      dockerfile: "${PWD}/dockerdev/dev/Dockerfile"
     volumes:
         - "${PROJECT}:/usr/src/app"
 
   prod:
     build:
       context: "${PROJECT}"
-      dockerfile: "${PWD}/prod/Dockerfile"
-
+      dockerfile: "${PWD}/dockerdev/prod/Dockerfile"
