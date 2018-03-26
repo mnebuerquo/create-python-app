@@ -17,6 +17,10 @@ while :; do
         ;;
         -r|--run|run) op="run"
         ;;
+        -y|--pytest|pytest) target="pytest"
+        ;;
+        -w|--watch|watch) target="watch"
+        ;;
         -t|--test|test) target="test"
         ;;
         -l|--lint|lint) target="lint"
@@ -39,7 +43,7 @@ echo "project: ${project}"
 echo "compose: ${compose}"
 echo "name   : ${name}"
 
-cd "${project}"
+#cd "${dockerdev}"
 export PROJECT="${project}"
 docker-compose \
     --file "${compose}" \

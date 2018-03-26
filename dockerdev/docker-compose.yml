@@ -14,13 +14,27 @@ services:
     volumes:
         - "${PROJECT}:/usr/src/app:ro"
 
-  test:
+  pytest:
     build:
-      context: ./test
-      #args:
-          #PROJECT: "${PROJECT}"
+      context: "${PROJECT}"
+      dockerfile: "${PWD}/dockerdev/pytest/Dockerfile"
     volumes:
         - "${PROJECT}:/usr/src/app"
+
+  watch:
+    build:
+      context: "${PROJECT}"
+      dockerfile: "${PWD}/dockerdev/watch/Dockerfile"
+    volumes:
+        - "${PROJECT}:/usr/src/app"
+
+  #test:
+    #build:
+      #context: ./test
+      #args:
+          #PROJECT: "${PROJECT}"
+    #volumes:
+        #- "${PROJECT}:/usr/src/app"
 
   dev:
     build:
