@@ -1,0 +1,36 @@
+# Create Python App
+# by Mnebuerquo
+# https://github.com/mnebuerquo/create-python-app
+# Please keep the above link in place if you are using this in your project!
+
+# Use this script to download all the necessary scripts to your project.
+# Run it any time to upgrade to the newest version of this tool.
+# Happy Pythoning!
+
+version: '3'
+services:
+  lint:
+    build: ./lint
+    volumes:
+        - "${PROJECT}:/usr/src/app:ro"
+
+  test:
+    build:
+      context: ./test
+      #args:
+          #PROJECT: "${PROJECT}"
+    volumes:
+        - "${PROJECT}:/usr/src/app"
+
+  dev:
+    build:
+      context: "${PROJECT}"
+      dockerfile: "${PWD}/dev/Dockerfile"
+    volumes:
+        - "${PROJECT}:/usr/src/app"
+
+  prod:
+    build:
+      context: "${PROJECT}"
+      dockerfile: "${PWD}/prod/Dockerfile"
+

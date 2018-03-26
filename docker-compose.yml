@@ -1,0 +1,29 @@
+# Create Python App
+# by Mnebuerquo
+# https://github.com/mnebuerquo/create-python-app
+# Please keep the above link in place if you are using this in your project!
+
+version: '3'
+services:
+  lint:
+    build: ./dockerdev/lint
+    volumes:
+        - .:/usr/src/app:ro
+
+  test:
+    build: ./dockerdev/test
+    volumes:
+        - .:/usr/src/app
+
+  dev:
+    build:
+      context: .
+      dockerfile: ./dockerdev/dev/Dockerfile
+    volumes:
+        - .:/usr/src/app
+
+  prod:
+    build:
+      context: .
+      dockerfile: ./dockerdev/prod/Dockerfile
+

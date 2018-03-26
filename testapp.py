@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import scipy
 
 def do_something(x):
     """
@@ -17,6 +18,14 @@ def meaning_of_life():
     42
     """
     return 42
+
+def abject_failure():
+    """
+    Just a test to see something fail.
+    >>> abject_failure()
+    True
+    """
+    return False
 
 def main():
     print(do_something(8))

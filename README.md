@@ -131,6 +131,7 @@ removing dependencies.
     all the boilerplate
 * [whalebrew](https://github.com/bfirsh/whalebrew)
     : Like homebrew, but using docker images to keep everything isolated.
+* [Article about docker ENTRYPOINT](http://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/)
 * Team Echo
     : The team I worked with at Kroger Digital. They use Docker for everything.
 
