@@ -66,6 +66,11 @@ combines the powers of a few static code checkers.
 ./mn_lint
 ```
 
+Soon I want to try out auto-formatting of code to simplify the cleanup of
+old code or so its easy to get new code looking clean before commit.
+[Auto formatting python](https://pypi.python.org/pypi/autopep8/1.1.1
+)
+
 ## Environment Variables
 
 Create a `.env` file containing environment variables. These will be loaded

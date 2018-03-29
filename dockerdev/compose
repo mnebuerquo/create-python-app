@@ -1,0 +1,21 @@
+#!/bin/sh
+
+dockerdev="$(cd "$(dirname "$0")" 2>/dev/null 1>&2 && pwd)"
+compose="${dockerdev}/docker-compose.yml"
+project=${PWD}
+name="$(basename "${project}")"
+
+export PROJECT="${project}"
+export DOCKERDEV="${dockerdev}"
+
+echo "PWD=${PWD}"
+echo "PROJECT=${PROJECT}"
+echo "DOCKERDEV=${DOCKERDEV}"
+echo "compose=${compose}"
+echo "name=${name}"
+
+docker-compose \
+    --file "${compose}" \
+    --project-directory "${dockerdev}" \
+    --project-name "${name}" \
+    "$@"

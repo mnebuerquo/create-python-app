@@ -14,36 +14,51 @@
 # Environment:
 # This will not work without certain environment variables set!
 # PROJECT: this is the path to the project you want to run or test
-# PWD: this is the path where the docker-compose.yml lives
+# DOCKERDEV: this is the path where the docker-compose.yml lives
 
 version: '3'
 services:
+
   lint:
     build: ./lint
     volumes:
-        - "${PROJECT}:/usr/src/app:ro"
+        - "${PROJECT:-.}:/usr/src/app:ro"
+    entrypoint:
+        - flake8
+        - --append-config=/usr/lint/flake8.ini
+
+  format:
+    build: ./lint
+    volumes:
+        - "${PROJECT:-.}:/usr/src/app"
+    entrypoint:
+        - autopep8
+        - --in-place
+        - --recursive
+        - --aggressive
 
   pytest:
     build:
-      context: "${PROJECT}"
-      dockerfile: "${PWD}/dockerdev/pytest/Dockerfile"
+      context: "${PROJECT:-.}"
+      dockerfile: "${DOCKERDEV:-./dockerdev}/pytest/Dockerfile"
     volumes:
-        - "${PROJECT}:/usr/src/app"
+        - "${PROJECT:-.}:/usr/src/app"
 
   watch:
     build:
       context: ./watch
     volumes:
-        - "${PROJECT}:/usr/src/app"
+        - "${PROJECT:-.}:/usr/src/app"
 
   dev:
     build:
-      context: "${PROJECT}"
-      dockerfile: "${PWD}/dockerdev/dev/Dockerfile"
+      context: "${PROJECT:-.}"
+      dockerfile: "${DOCKERDEV:-./dockerdev}/dev/Dockerfile"
     volumes:
-        - "${PROJECT}:/usr/src/app"
+        - "${PROJECT:-.}:/usr/src/app"
+        - "${PROJECT:-.}/logs/:/usr/src/app/logs/"
 
   prod:
     build:
-      context: "${PROJECT}"
-      dockerfile: "${PWD}/dockerdev/prod/Dockerfile"
+      context: "${PROJECT:-.}"
+      dockerfile: "${DOCKERDEV:-./dockerdev}/prod/Dockerfile"
