@@ -6,24 +6,33 @@
 version: '3'
 services:
   lint:
-    build: ./dockerdev/lint
+    build: "./dockerdev/lint"
     volumes:
-        - .:/usr/src/app:ro
+        - ".:/usr/src/app:ro"
 
-  test:
-    build: ./dockerdev/test
+  pytest:
+    build:
+      context: "."
+      dockerfile: "./dockerdev/pytest/Dockerfile"
     volumes:
-        - .:/usr/src/app
+        - ".:/usr/src/app:ro"
+
+  watch:
+    build:
+      context: "./dockerdev/watch"
+      dockerfile: "./dockerdev/watch/Dockerfile"
+    volumes:
+        - ".:/usr/src/app"
 
   dev:
     build:
-      context: .
-      dockerfile: ./dockerdev/dev/Dockerfile
+      context: "."
+      dockerfile: "./dockerdev/dev/Dockerfile"
     volumes:
-        - .:/usr/src/app
+        - ".:/usr/src/app"
+        - "./logs/:/usr/src/app/logs/"
 
   prod:
     build:
       context: .
-      dockerfile: ./dockerdev/prod/Dockerfile
-
+      dockerfile: "./dockerdev/prod/Dockerfile"

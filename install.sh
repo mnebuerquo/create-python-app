@@ -21,7 +21,7 @@ tempdir=$(mktemp -d)
 cd "${tempdir}"
 git clone git@github.com:mnebuerquo/create-python-app.git
 cd "create-python-app"
-cp -R "dockerdev"
+cp -R "dockerdev" "${target_dir}/"
 cp "docker-compose.yml" "${target_dir}/"
 cd "${target_dir}"
 rm -rf "${tempdir}"
