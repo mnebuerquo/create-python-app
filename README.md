@@ -114,6 +114,9 @@ Coming soon.
   required for the installer. It clones this repo in a temp directory,
   copies the necessary files to your project, then removes the cloned repo 
   from the temp directory.
+* [wget](https://stackoverflow.com/a/9491666/5114) is required for the installer
+  to download files. This may not be installed on all systems by default,
+  but it's easy to find instructions with a google search.
 
 # TODO
 
