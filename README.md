@@ -147,6 +147,11 @@ that it persists between containers. That would complicate rebuilds, as well
 as having another path in user space for it. The prod build should have 
 dependencies installed in the container like it is now.
 
+Also, adding network ports or additional volumes is not yet supported. To do
+this, you would have to install this into your own project and then edit the
+files. Then it can be committed to source control with the rest of your
+code.
+
 # Inspiration
 
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
