@@ -2,15 +2,17 @@
 # by Mnebuerquo
 # https://github.com/mnebuerquo/create-python-app
 # Please keep the above link in place if you are using this in your project!
-
+#
 # Usage: 
 # docker-compose build
 # docker-compose run lint
+# docker-compose run format .
+# docker-compose run freeze <alternate requirements file>
+# docker-compose run safety
 # docker-compose run pytest
 # docker-compose run watch
-# docker-compose run dev
-# docker-compose run prod
-
+# docker-compose run dev <application file>
+#
 # Environment:
 # This will not work without certain environment variables set!
 # PROJECT: this is the path to the project you want to run or test
@@ -23,9 +25,11 @@ services:
     build: ./lint
     volumes:
         - "${PROJECT:-.}:/usr/src/app:ro"
-    entrypoint:
-        - flake8
-        - --append-config=/usr/lint/flake8.ini
+
+  safety:
+    build: ./safety
+    volumes:
+        - "${PROJECT:-.}:/usr/src/app:ro"
 
   format:
     build: ./lint
@@ -50,13 +54,18 @@ services:
     volumes:
         - "${PROJECT:-.}:/usr/src/app"
 
+  freeze:
+    build:
+      context: ./freeze
+    volumes:
+        - "${PROJECT:-.}:/usr/src/app"
+
   dev:
     build:
       context: "${PROJECT:-.}"
       dockerfile: "${DOCKERDEV:-./dockerdev}/dev/Dockerfile"
     volumes:
         - "${PROJECT:-.}:/usr/src/app"
-        - "${PROJECT:-.}/logs/:/usr/src/app/logs/"
 
   prod:
     build:

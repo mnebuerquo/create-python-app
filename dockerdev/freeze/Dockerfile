@@ -8,6 +8,6 @@ RUN pip install --upgrade pip
 RUN pip install pytest-watch
 
 WORKDIR /usr/src/app
-COPY . /usr/test
-# this fails if it doesn't have an ini file
-ENTRYPOINT [ "sh", "/usr/test/test.sh" ]
+COPY . /usr/freeze
+
+ENTRYPOINT [ "sh", "/usr/freeze/freeze.sh" ]

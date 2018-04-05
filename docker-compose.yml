@@ -2,11 +2,26 @@
 # by Mnebuerquo
 # https://github.com/mnebuerquo/create-python-app
 # Please keep the above link in place if you are using this in your project!
+#
+# Usage: 
+# docker-compose build
+# docker-compose run lint
+# docker-compose run format .
+# docker-compose run freeze <alternate requirements file>
+# docker-compose run safety
+# docker-compose run pytest
+# docker-compose run watch
+# docker-compose run dev <application file>
 
 version: '3'
 services:
   lint:
     build: "./dockerdev/lint"
+    volumes:
+        - ".:/usr/src/app:ro"
+
+  safety:
+    build: "./dockerdev/safety"
     volumes:
         - ".:/usr/src/app:ro"
 
@@ -18,9 +33,12 @@ services:
         - ".:/usr/src/app:ro"
 
   watch:
-    build:
-      context: "./dockerdev/watch"
-      dockerfile: "./dockerdev/watch/Dockerfile"
+    build: "./dockerdev/watch"
+    volumes:
+        - ".:/usr/src/app"
+
+  freeze:
+    build: "./dockerdev/freeze"
     volumes:
         - ".:/usr/src/app"
 
@@ -30,7 +48,6 @@ services:
       dockerfile: "./dockerdev/dev/Dockerfile"
     volumes:
         - ".:/usr/src/app"
-        - "./logs/:/usr/src/app/logs/"
 
   prod:
     build:

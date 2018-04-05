@@ -1,4 +1,20 @@
 #!/bin/sh
+# Create Python App
+# by Mnebuerquo
+# https://github.com/mnebuerquo/create-python-app
+# Please keep the above link in place if you are using this in your project!
+
+# This script runs docker-compose with the compose file in this directory.
+# It uses $PWD as the project directory, and sets paths correctly for the
+# containers to build and run. This script works with relative or absolute
+# paths, so it can be installed in one place and used with multiple
+# projects.
+#
+# To use this script, call it like you would docker-compose. Make sure you
+# call it from the project directory.
+#
+# <path>/compose build dev
+# <path>/compose run dev testapp.py
 
 dockerdev="$(cd "$(dirname "$0")" 2>/dev/null 1>&2 && pwd)"
 compose="${dockerdev}/docker-compose.yml"
